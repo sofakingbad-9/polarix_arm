@@ -1,0 +1,533 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="leg_assembly">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.150594316389524 0.0678493446135312 0.347863951717185"
+        rpy="0 0 0" />
+      <mass
+        value="0.0101653880980363" />
+      <inertia
+        ixx="1.0048246878099E-05"
+        ixy="-7.3468396926393E-37"
+        ixz="-1.53688779177998E-21"
+        iyy="1.5157875001342E-07"
+        iyz="3.82929478237882E-22"
+        izz="1.0048246878099E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://leg_assembly/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://leg_assembly/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="link_1">
+    <inertial>
+      <origin
+        xyz="-0.0614185793985458 0.127225993323511 -0.103015532344665"
+        rpy="0 0 0" />
+      <mass
+        value="14.3172515097003" />
+      <inertia
+        ixx="1.47051720779902"
+        ixy="-0.0975033756736119"
+        ixz="0.162957766718895"
+        iyy="1.06376569521041"
+        iyz="0.590486867173748"
+        izz="0.673327903454145" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://leg_assembly/meshes/link_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://leg_assembly/meshes/link_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="base_joint"
+    type="continuous">
+    <origin
+      xyz="0.150594316389524 -0.347863951717185 0.102099344613531"
+      rpy="1.5707963267949 0 1.92899218657778" />
+    <parent
+      link="base_link" />
+    <child
+      link="link_1" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  <link
+    name="link_2">
+    <inertial>
+      <origin
+        xyz="-0.0614185793985462 0.0860431898520337 -0.0252770894795993"
+        rpy="0 0 0" />
+      <mass
+        value="14.3172515097003" />
+      <inertia
+        ixx="1.47051720779902"
+        ixy="-0.183407254561084"
+        ixz="0.049233331962452"
+        iyy="0.28463001287987"
+        iyz="0.21407088571695"
+        izz="1.45246358578468" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://leg_assembly/meshes/link_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://leg_assembly/meshes/link_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="shoulder_joint"
+    type="continuous">
+    <origin
+      xyz="0 0.0829999999999999 -0.0249999999999991"
+      rpy="-0.769347148250491 0 0" />
+    <parent
+      link="link_1" />
+    <child
+      link="link_2" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+  <link
+    name="link_3">
+    <inertial>
+      <origin
+        xyz="0.0349999999999945 -0.200848271626628 -0.50117220412209"
+        rpy="0 0 0" />
+      <mass
+        value="0.003071007349849" />
+      <inertia
+        ixx="3.31492210861076E-07"
+        ixy="1.85702047518155E-22"
+        ixz="4.6983858793012E-22"
+        iyy="2.91588594850019E-07"
+        iyz="-9.95706013636013E-08"
+        izz="8.3035914239687E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://leg_assembly/meshes/link_3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://leg_assembly/meshes/link_3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="elbow_joint"
+    type="continuous">
+    <origin
+      xyz="0 0.433165678176262 0.292848996327625"
+      rpy="1.03040234769901 0 0" />
+    <parent
+      link="link_2" />
+    <child
+      link="link_3" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+  <link
+    name="link_4">
+    <inertial>
+      <origin
+        xyz="0.320431980343591 -0.376269057917054 0.473731650433522"
+        rpy="0 0 0" />
+      <mass
+        value="14.3172515097003" />
+      <inertia
+        ixx="1.22299869199904"
+        ixy="0.315862841528246"
+        ixz="-0.397130167812801"
+        iyy="1.12261703452718"
+        iyz="0.501432352642655"
+        izz="0.861995079937343" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://leg_assembly/meshes/link_4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://leg_assembly/meshes/link_4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wrist_roll"
+    type="continuous">
+    <origin
+      xyz="0.0349999999999992 -0.198274893934871 -0.494750912271433"
+      rpy="-0.276225881664695 -0.304270113720173 -0.900391226843565" />
+    <parent
+      link="link_3" />
+    <child
+      link="link_4" />
+    <axis
+      xyz="0 0.0429812476264269 -0.99907587917659" />
+  </joint>
+  <link
+    name="end_effector">
+    <inertial>
+      <origin
+        xyz="2.22044604925031E-16 0.0152130621288969 -0.0798538250989508"
+        rpy="0 0 0" />
+      <mass
+        value="0.00512941577019471" />
+      <inertia
+        ixx="1.25499198245662E-06"
+        ixy="-3.4146015686189E-21"
+        ixz="1.42275065359121E-21"
+        iyy="1.90379021308943E-07"
+        iyz="4.26651102034632E-07"
+        izz="1.08400856452872E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://leg_assembly/meshes/end_effector.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://leg_assembly/meshes/end_effector.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wrist_pitch"
+    type="continuous">
+    <origin
+      xyz="0 0.0021491 -0.049954"
+      rpy="0.29533 0 0" />
+    <parent
+      link="link_4" />
+    <child
+      link="end_effector" />
+    <axis
+      xyz="1 0 0" />
+  </joint>
+  <link
+    name="finger_link_left">
+    <inertial>
+      <origin
+        xyz="0 0.0265129074172366 0.0295580095320563"
+        rpy="0 0 0" />
+      <mass
+        value="0.00369323716533971" />
+      <inertia
+        ixx="1.64319292473695E-06"
+        ixy="5.29395592033938E-23"
+        ixz="9.27269466671944E-22"
+        iyy="1.65626520145604E-06"
+        iyz="4.57265442619314E-21"
+        izz="3.9078821758365E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://leg_assembly/meshes/finger_link_left.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://leg_assembly/meshes/finger_link_left.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="finger_joint_left"
+    type="continuous">
+    <origin
+      xyz="-0.0350000000000005 -0.0252122416049434 -0.0725251018483113"
+      rpy="-2.72838699915497 -0.386039781368848 2.97798281371752" />
+    <parent
+      link="end_effector" />
+    <child
+      link="finger_link_left" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  <link
+    name="finger_tip_left">
+    <inertial>
+      <origin
+        xyz="-0.116970106234662 -0.175351334282535 0.816276217430182"
+        rpy="0 0 0" />
+      <mass
+        value="14.3172515097003" />
+      <inertia
+        ixx="1.47116642312389"
+        ixy="-0.0431428215248987"
+        ixz="0.0989108612375278"
+        iyy="1.37410627950981"
+        iyz="0.393564230132815"
+        izz="0.362338103829861" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://leg_assembly/meshes/finger_tip_left.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://leg_assembly/meshes/finger_tip_left.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="finger_j1"
+    type="continuous">
+    <origin
+      xyz="0 0 0.0599999999999998"
+      rpy="-2.81843607467865 -0.292711741710647 -3.14159265358978" />
+    <parent
+      link="finger_link_left" />
+    <child
+      link="finger_tip_left" />
+    <axis
+      xyz="0 0.948237736477631 -0.317561324974845" />
+  </joint>
+  <link
+    name="finger_link_right">
+    <inertial>
+      <origin
+        xyz="1.11022302462516E-16 0.019589295354482 0.0295580095320566"
+        rpy="0 0 0" />
+      <mass
+        value="0.00369323716533973" />
+      <inertia
+        ixx="1.64319292473697E-06"
+        ixy="-5.29395592033938E-23"
+        ixz="9.40504356472792E-22"
+        iyy="1.65626520145607E-06"
+        iyz="6.24025054110004E-21"
+        izz="3.90788217583653E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://leg_assembly/meshes/finger_link_right.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://leg_assembly/meshes/finger_link_right.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="finger_joint_right"
+    type="continuous">
+    <origin
+      xyz="0.035 -0.018786 -0.075101"
+      rpy="-2.7586 0.095478 -3.1032" />
+    <parent
+      link="end_effector" />
+    <child
+      link="finger_link_right" />
+    <axis
+      xyz="0 1 0" />
+    <mimic
+      joint="finger_joint_left"
+      multiplier="1"
+      offset="0" />
+  </joint>
+  <link
+    name="finger_tip_right">
+    <inertial>
+      <origin
+        xyz="-0.21008 -0.20292 0.75576"
+        rpy="0 0 0" />
+      <mass
+        value="14.317" />
+      <inertia
+        ixx="1.4675"
+        ixy="-0.050352"
+        ixz="0.11832"
+        iyy="1.3735"
+        iyz="0.39336"
+        izz="0.36667" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://leg_assembly/meshes/finger_tip_right.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://leg_assembly/meshes/finger_tip_right.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="finger_j2"
+    type="continuous">
+    <origin
+      xyz="0 0 0.06"
+      rpy="-2.8184 -0.8343 -3.1416" />
+    <parent
+      link="finger_link_right" />
+    <child
+      link="finger_tip_right" />
+    <axis
+      xyz="0 0.94824 -0.31756" />
+    <mimic
+      joint="finger_j1"
+      multiplier="1"
+      offset="0" />
+  </joint>
+
+</robot>
