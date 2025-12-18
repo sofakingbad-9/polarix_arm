@@ -25,17 +25,21 @@ public:
 				"wrist_pitch"
 			};
 			
+			timer_ = create_wall_timer(
+				std::chrono::milliseconds(20),
+				std::bind(&TeleopWithCollision::update, this));
 
 			
 			current_positions_.resize(joint_names_.size(), 0.0);
 			max_vel_ = 0.3;         // rad/s
-			dt_ = 0.05;             // 20 Hz update
-			
+		
+			max_acc_=2.0;
+			joint_vel_.resize(joint_names_.size(),0.0);
 			
 			joy_sub_ = this->create_subscription<sensor_msgs::msg::Joy>(
 			"/joy", 10, std::bind(&TeleopWithCollision::JoyCallback, this, std::placeholders::_1));
 			
-			
+
 			
 			js_sub_ = create_subscription<sensor_msgs::msg::JointState>(
             "/joint_states", 50,
@@ -77,34 +81,50 @@ private:
 			latest_joint_state_=*msg;
 		}
 		
+
 		
 		void JoyCallback(const sensor_msgs::msg::Joy::SharedPtr msg)
 		{
 			
-      double dpad_x = msg->axes[6];
-      double dpad_y = msg->axes[7];
-      double right_x = msg->axes[4];
-      double right_y = -msg->axes[3];
+      joy_cmd[0]= msg->axes[6];
+      joy_cmd[1]= msg->axes[7];
+      joy_cmd[2] = msg->axes[4];
+      joy_cmd[3] = -msg->axes[3];
+      0.0;
       
-  
-      std::vector<double> increments = {
-        dpad_x * max_vel_ * dt_,
-        dpad_y * max_vel_ * dt_,
-        right_x * max_vel_ * dt_,
-        right_y * max_vel_ * dt_,
+  	}
+  	
+  	void update(){
+  	
+      std::vector<double> v_des = {
+        joy_cmd[0] * max_vel_ ,
+        joy_cmd[1] * max_vel_ ,
+        joy_cmd[2] * max_vel_,
+        joy_cmd[3] * max_vel_ ,
         0.0 // if fifth joint unused on joystick
    		};
    		
+   		const double dt_=0.02;
    		
    		std::vector<double> updated_angles = current_positions_;
+
    		
    		
       for(size_t i=0;i<size(updated_angles);i++){
-      	updated_angles[i]+=increments[i];
+      
+      	double dv= v_des[i]-joint_vel_[i];
+      	double max_dv= max_acc_*dt_;
+      	
+      	dv=std::clamp(dv,-max_dv,max_dv);
+      	joint_vel_[i]+=dv;
+      	updated_angles[i]+=joint_vel_[i]*dt_;
       }
       
       if(!isCollisionFree(updated_angles)){
       	RCLCPP_WARN(get_logger(), "COLLISION NIGGA MOVEEEEEEEEEE");
+      	
+				for (auto &v : joint_vel_)
+					v = 0.0;
       	return;
       }
       
@@ -140,12 +160,13 @@ private:
 			
 		}
 		
-		
+		rclcpp::TimerBase::SharedPtr timer_;
+
 		std::vector<std::string> joint_names_;
     std::vector<double> current_positions_;
     sensor_msgs::msg::JointState latest_joint_state_;
-
-    double max_vel_, dt_;
+		std::vector<double> joint_vel_;
+    double max_vel_, dt_,max_acc_;
     
     std::shared_ptr<robot_model_loader::RobotModelLoader> robot_model_loader_;
 
@@ -154,6 +175,8 @@ private:
     rclcpp::Publisher<trajectory_msgs::msg::JointTrajectory>::SharedPtr traj_pub_;
 
     planning_scene_monitor::PlanningSceneMonitorPtr psm_;
+   	std::vector<double> joy_cmd{0.0, 0.0, 0.0, 0.0, 0.0};
+
 };
 
 
