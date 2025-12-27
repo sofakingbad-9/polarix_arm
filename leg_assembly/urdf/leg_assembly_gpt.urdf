@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="leg_assembly">
+
+  <!-- ================= BASE ================= -->
+
+  <link name="base_link">
+    <inertial>
+      <origin xyz="0 0 0"/>
+      <mass value="3.0"/>
+      <inertia ixx="0.05" iyy="0.05" izz="0.05" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="file://$(find leg_assembly)/meshes/base_link.STL"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="file://$(find leg_assembly)/meshes/base_link.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- ================= LINK 1 ================= -->
+
+  <link name="link_1">
+    <inertial>
+      <origin xyz="0 0 0"/>
+      <mass value="2.5"/>
+      <inertia ixx="0.04" iyy="0.04" izz="0.04" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="file://$(find leg_assembly)/meshes/link_1.STL"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="file://$(find leg_assembly)/meshes/link_1.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="base_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="link_1"/>
+    <origin xyz="0.150594316389524 -0.347863951717185 0.102099344613531"
+            rpy="1.5707963267949 0 1.92899218657778"/>
+    <axis xyz="0 1 0"/>
+    <dynamics damping="6.0" friction="1.5"/>
+  </joint>
+
+  <!-- ================= LINK 2 ================= -->
+
+  <link name="link_2">
+    <inertial>
+      <origin xyz="0 0 0"/>
+      <mass value="2.0"/>
+      <inertia ixx="0.035" iyy="0.035" izz="0.035" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="file://$(find leg_assembly)/meshes/link_2.STL"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="file://$(find leg_assembly)/meshes/link_2.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="shoulder_joint" type="continuous">
+    <parent link="link_1"/>
+    <child link="link_2"/>
+    <origin xyz="0 0.083 -0.025" rpy="-0.769347148250491 0 0"/>
+    <axis xyz="1 0 0"/>
+    <dynamics damping="6.0" friction="1.5"/>
+  </joint>
+
+  <!-- ================= LINK 3 ================= -->
+
+  <link name="link_3">
+    <inertial>
+      <origin xyz="0 0 0"/>
+      <mass value="0.8"/>
+      <inertia ixx="0.015" iyy="0.015" izz="0.015" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="file://$(find leg_assembly)/meshes/link_3.STL"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="file://$(find leg_assembly)/meshes/link_3.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="elbow_joint" type="continuous">
+    <parent link="link_2"/>
+    <child link="link_3"/>
+    <origin xyz="0 0.433165678176262 0.292848996327625"
+            rpy="1.03040234769901 0 0"/>
+    <axis xyz="1 0 0"/>
+    <dynamics damping="6.0" friction="1.5"/>
+  </joint>
+
+  <!-- ================= LINK 4 ================= -->
+
+  <link name="link_4">
+    <inertial>
+      <origin xyz="0 0 0"/>
+      <mass value="1.5"/>
+      <inertia ixx="0.025" iyy="0.025" izz="0.025" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="file://$(find leg_assembly)/meshes/link_4.STL"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="file://$(find leg_assembly)/meshes/link_4.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="wrist_roll" type="continuous">
+    <parent link="link_3"/>
+    <child link="link_4"/>
+    <origin xyz="0.035 -0.198 -0.495"
+            rpy="-0.276225881664695 -0.304270113720173 -0.900391226843565"/>
+    <axis xyz="0 0.0429812476264269 -0.99907587917659"/>
+    <dynamics damping="4.0" friction="1.0"/>
+  </joint>
+
+  <!-- ================= END EFFECTOR ================= -->
+
+  <link name="end_effector">
+    <inertial>
+      <origin xyz="0 0 0"/>
+      <mass value="0.4"/>
+      <inertia ixx="0.008" iyy="0.008" izz="0.008" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="file://$(find leg_assembly)/meshes/end_effector.STL"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="file://$(find leg_assembly)/meshes/end_effector.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="wrist_pitch" type="continuous">
+    <parent link="link_4"/>
+    <child link="end_effector"/>
+    <origin xyz="0 0.0021491 -0.049954" rpy="0.29533 0 0"/>
+    <axis xyz="1 0 0"/>
+    <dynamics damping="4.0" friction="1.0"/>
+  </joint>
+
+  <!-- ================= FINGERS ================= -->
+
+  <link name="finger_link_left">
+    <inertial>
+      <origin xyz="0 0 0"/>
+      <mass value="0.05"/>
+      <inertia ixx="0.001" iyy="0.001" izz="0.001" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="file://$(find leg_assembly)/meshes/finger_link_left.STL"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="file://$(find leg_assembly)/meshes/finger_link_left.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="finger_joint_left" type="continuous">
+    <parent link="end_effector"/>
+    <child link="finger_link_left"/>
+    <origin xyz="-0.035 -0.025212 -0.072525"
+            rpy="-2.72838699915497 -0.386039781368848 2.97798281371752"/>
+    <axis xyz="0 1 0"/>
+    <dynamics damping="10.0" friction="2.0"/>
+  </joint>
+
+  <link name="finger_tip_left">
+    <inertial>
+      <origin xyz="0 0 0"/>
+      <mass value="0.05"/>
+      <inertia ixx="0.001" iyy="0.001" izz="0.001" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="file://$(find leg_assembly)/meshes/finger_tip_left.STL"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="file://$(find leg_assembly)/meshes/finger_tip_left.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="finger_j1" type="continuous">
+    <parent link="finger_link_left"/>
+    <child link="finger_tip_left"/>
+    <origin xyz="0 0 0.06"
+            rpy="-2.81843607467865 -0.292711741710647 -3.14159265358978"/>
+    <axis xyz="0 0.948237736477631 -0.317561324974845"/>
+    <dynamics damping="10.0" friction="2.0"/>
+  </joint>
+
+  <link name="finger_link_right">
+    <inertial>
+      <origin xyz="0 0 0"/>
+      <mass value="0.05"/>
+      <inertia ixx="0.001" iyy="0.001" izz="0.001" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="file://$(find leg_assembly)/meshes/finger_link_right.STL"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="file://$(find leg_assembly)/meshes/finger_link_right.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="finger_joint_right" type="continuous">
+    <parent link="end_effector"/>
+    <child link="finger_link_right"/>
+    <origin xyz="0.035 -0.018786 -0.075101"
+            rpy="-2.7586 0.095478 -3.1032"/>
+    <axis xyz="0 1 0"/>
+    <mimic joint="finger_joint_left"/>
+    <dynamics damping="10.0" friction="2.0"/>
+  </joint>
+
+  <link name="finger_tip_right">
+    <inertial>
+      <origin xyz="0 0 0"/>
+      <mass value="0.05"/>
+      <inertia ixx="0.001" iyy="0.001" izz="0.001" ixy="0" ixz="0" iyz="0"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="file://$(find leg_assembly)/meshes/finger_tip_right.STL"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="file://$(find leg_assembly)/meshes/finger_tip_right.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="finger_j2" type="continuous">
+    <parent link="finger_link_right"/>
+    <child link="finger_tip_right"/>
+    <origin xyz="0 0 0.06"
+            rpy="-2.8184 -0.8343 -3.1416"/>
+    <axis xyz="0 0.94824 -0.31756"/>
+    <mimic joint="finger_j1"/>
+    <dynamics damping="10.0" friction="2.0"/>
+  </joint>
+
+</robot>
+

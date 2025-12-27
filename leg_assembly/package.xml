@@ -15,7 +15,9 @@ for final_urdf_assembly robot</p>
   <depend>robot_state_publisher</depend>
   <depend>rviz2</depend>
   <depend>joint_state_publisher_gui</depend>
-  <depend>gazebo</depend>
+  <exec_depend>ros_ign_gazebo</exec_depend>
+  <exec_depend>ignition_ros2_control</exec_depend>
+
   <export>
     <build_type>ament_cmake</build_type>
   </export>

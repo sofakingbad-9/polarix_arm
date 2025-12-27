@@ -15,7 +15,7 @@ find_package(std_msgs REQUIRED)
 find_package(gazebo_ros REQUIRED)
 
 install(
-		DIRECTORY config launch meshes urdf
+		DIRECTORY config launch meshes urdf worlds
 		
 
 		DESTINATION share/${PROJECT_NAME}

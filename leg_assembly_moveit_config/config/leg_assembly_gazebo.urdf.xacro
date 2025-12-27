@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="leg_assembly">
+
+  <xacro:arg name="initial_positions_file" default="initial_positions.yaml" />
+
+  <!-- Base robot -->
+  <xacro:include filename="$(find leg_assembly)/urdf/leg_assembly_gpt.urdf"/>
+
+  <!-- ros2_control (Gazebo) -->
+  <xacro:include
+    filename="$(find leg_assembly_moveit_config)/config/gazebo_ros2_control.xacro"/>
+
+  <!-- Gazebo plugin -->
+  <xacro:include
+    filename="$(find leg_assembly_moveit_config)/config/robot_gazebo.xacro"/>
+
+  <!-- Instantiate -->
+  <xacro:gazebo_ros2_control
+    name="LegAssemblySystem"
+    initial_positions_file="$(arg initial_positions_file)"/>
+
+  <xacro:robot_gazebo/>
+
+</robot>
+
