@@ -1,0 +1,28 @@
+<package format="2">
+  <name>leg_assembly</name>
+  <version>1.0.0</version>
+  <description>
+    <p>URDF Description package for final_urdf_assembly</p>
+    <p>This package contains configuration data, 3D models and launch files
+for final_urdf_assembly robot</p>
+  </description>
+  <author>TODO</author>
+  <maintainer email="TODO@email.com" />
+  <license>BSD</license>
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <depend>rclcpp</depend>
+	<depend>rclcpp_lifecycle</depend>
+  <depend>robot_state_publisher</depend>
+  <depend>rviz2</depend>
+  <depend>std_msgs</depend>
+  <depend>hardware_interface</depend>
+  <depend>pluginlib</depend>
+  
+  <depend>joint_state_publisher_gui</depend>
+  <exec_depend>ros_ign_gazebo</exec_depend>
+  <exec_depend>ignition_ros2_control</exec_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

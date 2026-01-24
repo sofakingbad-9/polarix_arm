@@ -1,0 +1,10 @@
+# Default initial positions for leg_assembly's ros2_control fake system
+
+initial_positions:
+  base_joint: 0
+  elbow_joint: 0
+  finger_j1: 0
+  finger_joint_left: 0
+  shoulder_joint: 0
+  wrist_pitch: 0
+  wrist_roll: 0
