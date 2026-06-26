@@ -12,6 +12,7 @@ SETUP:
 
 :D
 Architecture:
+
 folder leg_assembly: 
      -contains urdf, meshes and launch files
 folder leg_assembly_moveit_config:
